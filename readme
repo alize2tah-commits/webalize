@@ -1,0 +1,1692 @@
+{
+  "name": "ALIZE APP",
+  "short_name": "MyApp",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196f3",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Toyota 2025 Advanced Calculator</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        body {
+
+            box-sizing: border-box;
+
+        }
+
+        html, body {
+
+            height: 100%;
+
+        }
+
+        .gradient-bg {
+
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+
+        }
+
+        .card-shadow {
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+        }
+
+        .animate-slide-up {
+
+            animation: slideUp 0.3s ease-out;
+
+        }
+
+        @keyframes slideUp {
+
+            from { transform: translateY(20px); opacity: 0; }
+
+            to { transform: translateY(0); opacity: 1; }
+
+        }
+
+        .checkbox-item {
+
+            transition: all 0.2s ease;
+
+        }
+
+        .checkbox-item:hover {
+
+            transform: translateY(-1px);
+
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <div class="min-h-full">
+
+        <!-- Header -->
+
+        <header class="gradient-bg text-white p-4 shadow-lg sticky top-0 z-40">
+
+            <div class="flex items-center justify-center mb-2">
+
+                <div class="text-2xl font-bold">TOYOTA</div>
+
+                <span class="bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold ml-3">2025</span>
+
+            </div>
+
+            <p class="text-center text-red-100">คำนวณราคาและค่าใช้จ่ายครบครัน</p>
+
+        </header>
+
+
+
+        <!-- Main Content -->
+
+        <main class="p-4 pb-20">
+
+            <!-- Car Selection -->
+
+            <div class="bg-white rounded-xl p-6 mb-6 card-shadow">
+
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+
+                    🚗 เลือกรุ่นรถยนต์ 2025
+
+                </h2>
+
+                <select id="carModel" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
+
+                    <option value="">-- เลือกรุ่นรถ --</option>
+
+                    <optgroup label="⚡ ATIV">
+
+                        <option value="ativ_sport" data-price="549000" data-pearl="7000" data-roof="0">ATIV Sport - ฿549,000</option>
+
+                        <option value="ativ_smart" data-price="594000" data-pearl="7000" data-roof="0">ATIV Smart - ฿594,000</option>
+
+                        <option value="ativ_premium" data-price="669000" data-pearl="7000" data-roof="0">ATIV Premium - ฿669,000</option>
+
+                        <option value="ativ_premium_luxury" data-price="699000" data-pearl="7000" data-roof="0">ATIV Premium Luxury - ฿699,000</option>
+
+                        <option value="ativ_hev_premium" data-price="719000" data-pearl="7000" data-roof="0">ATIV HEV Premium - ฿719,000</option>
+
+                        <option value="ativ_hev_gr_sport" data-price="769000" data-pearl="7000" data-roof="0">ATIV HEV GR Sport - ฿769,000</option>
+
+                    </optgroup>
+
+                    <optgroup label="🚗 YARIS HATCHBACK">
+
+                        <option value="yaris_sport" data-price="559000" data-pearl="7000" data-roof="0">Yaris Sport - ฿559,000</option>
+
+                        <option value="yaris_smart" data-price="619000" data-pearl="7000" data-roof="0">Yaris Smart - ฿619,000</option>
+
+                        <option value="yaris_premium" data-price="679000" data-pearl="7000" data-roof="0">Yaris Premium - ฿679,000</option>
+
+                        <option value="yaris_premium_s" data-price="694000" data-pearl="7000" data-roof="0">Yaris Premium S - ฿694,000</option>
+
+                    </optgroup>
+
+                    <optgroup label="🚙 YARIS CROSS">
+
+                        <option value="yaris_cross_smart" data-price="789000" data-pearl="7000" data-roof="5000">Yaris Cross Smart - ฿789,000</option>
+
+                        <option value="yaris_cross_premium" data-price="849000" data-pearl="7000" data-roof="5000">Yaris Cross Premium - ฿849,000</option>
+
+                        <option value="yaris_cross_premium_luxury" data-price="899000" data-pearl="7000" data-roof="5000">Yaris Cross Premium Luxury - ฿899,000</option>
+
+                    </optgroup>
+
+                    <optgroup label="🏆 COROLLA CROSS">
+
+                        <option value="corolla_cross_hev_premium" data-price="1094000" data-pearl="10000" data-roof="0">Corolla Cross HEV Premium - ฿1,094,000</option>
+
+                        <option value="corolla_cross_hev_premium_luxury" data-price="1204000" data-pearl="10000" data-roof="0">Corolla Cross HEV Premium Luxury - ฿1,204,000</option>
+
+                        <option value="corolla_cross_gr_sport" data-price="1254000" data-pearl="10000" data-roof="0">Corolla Cross GR Sport - ฿1,254,000</option>
+
+                    </optgroup>
+
+                    <optgroup label="🚐 VELOZ">
+
+                        <option value="veloz_smart" data-price="795000" data-pearl="0" data-roof="0">Veloz Smart - ฿795,000</option>
+
+                        <option value="veloz_premium" data-price="875000" data-pearl="0" data-roof="0">Veloz Premium - ฿875,000</option>
+
+                    </optgroup>
+
+                    <optgroup label="🏪 CAMRY">
+
+                        <option value="camry_smart" data-price="1475000" data-pearl="10000" data-roof="0">Camry Smart - ฿1,475,000</option>
+
+                        <option value="camry_premium" data-price="1659000" data-pearl="10000" data-roof="0">Camry Premium - ฿1,659,000</option>
+
+                        <option value="camry_luxury" data-price="1809000" data-pearl="10000" data-roof="0">Camry Luxury - ฿1,809,000</option>
+
+                    </optgroup>
+
+                    <optgroup label="💪 FORTUNER 4x2">
+
+                        <option value="fortuner_4x2_s" data-price="1239000" data-pearl="12000" data-roof="0">Fortuner 4x2 S - ฿1,239,000</option>
+
+                        <option value="fortuner_4x2_g" data-price="1400000" data-pearl="12000" data-roof="0">Fortuner 4x2 G - ฿1,400,000</option>
+
+                        <option value="fortuner_4x2_g_plus" data-price="1439000" data-pearl="12000" data-roof="0">Fortuner 4x2 G Plus - ฿1,439,000</option>
+
+                        <option value="fortuner_4x2_v" data-price="1530000" data-pearl="12000" data-roof="0">Fortuner 4x2 V - ฿1,530,000</option>
+
+                        <option value="fortuner_4x2_legender_24" data-price="1643000" data-pearl="12000" data-roof="0">Fortuner 4x2 2.4 Legender - ฿1,643,000</option>
+
+                        <option value="fortuner_4x2_legender_28" data-price="1835000" data-pearl="12000" data-roof="0">Fortuner 4x2 2.8 Legender - ฿1,835,000</option>
+
+                    </optgroup>
+
+                    <optgroup label="🔥 FORTUNER 4x4">
+
+                        <option value="fortuner_4x4_v_24" data-price="1600000" data-pearl="12000" data-roof="0">Fortuner 4x4 2.4 V - ฿1,600,000</option>
+
+                        <option value="fortuner_4x4_legender_24" data-price="1713000" data-pearl="12000" data-roof="0">Fortuner 4x4 2.4 Legender - ฿1,713,000</option>
+
+                        <option value="fortuner_4x4_legender_28" data-price="1904000" data-pearl="12000" data-roof="0">Fortuner 4x4 2.8 Legender - ฿1,904,000</option>
+
+                        <option value="fortuner_4x4_gr" data-price="1969000" data-pearl="12000" data-roof="0">Fortuner 4x4 GR - ฿1,969,000</option>
+
+                    </optgroup>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Color Selection -->
+
+            <div id="colorSection" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">🎨 เลือกสีรถ</h3>
+
+                <div class="grid grid-cols-1 gap-3">
+
+                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="radio" name="carColor" value="standard" class="mr-3" checked onchange="calculateColorPrice()">
+
+                        <span class="text-sm">🔘 สีมาตรฐาน (ไม่เพิ่มราคา)</span>
+
+                    </label>
+
+                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="radio" name="carColor" value="pearl" class="mr-3" onchange="calculateColorPrice()">
+
+                        <span class="text-sm">⚪ สีขาวมุก/เทานม (+<span id="pearlPrice">0</span> บาท)</span>
+
+                    </label>
+
+                    <label id="blackRoofOption" class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer hidden">
+
+                        <input type="checkbox" id="blackRoof" class="mr-3" onchange="calculateColorPrice()">
+
+                        <span class="text-sm">⚫ หลังคาดำ (+<span id="roofPrice">0</span> บาท)</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Price Display -->
+
+            <div id="priceDisplay" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-3">💰 ราคารถยนต์</h3>
+
+                <div class="space-y-2">
+
+                    <div class="flex justify-between">
+
+                        <span>ราคาฐาน:</span>
+
+                        <span id="basePrice">฿0</span>
+
+                    </div>
+
+                    <div class="flex justify-between text-sm text-gray-600">
+
+                        <span>ค่าสี:</span>
+
+                        <span id="colorCost">฿0</span>
+
+                    </div>
+
+                    <div class="border-t pt-2">
+
+                        <div class="flex justify-between">
+
+                            <span class="font-bold">ราคารวม:</span>
+
+                            <span class="text-2xl font-bold text-red-600" id="totalPrice">฿0</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Payment Type Selection -->
+
+            <div id="paymentTypeSection" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">💰 ประเภทการชำระเงิน</h3>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+
+                    <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50" id="cashPaymentLabel">
+
+                        <input type="radio" name="paymentType" value="cash" class="mr-3" onchange="handlePaymentTypeChange()">
+
+                        <div>
+
+                            <div class="font-bold text-green-600">💵 ซื้อเงินสด</div>
+
+                            <div class="text-sm text-gray-600">จ่ายเต็มจำนวน</div>
+
+                        </div>
+
+                    </label>
+
+                    <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50" id="financePaymentLabel">
+
+                        <input type="radio" name="paymentType" value="finance" class="mr-3" checked onchange="handlePaymentTypeChange()">
+
+                        <div>
+
+                            <div class="font-bold text-blue-600">🏦 ผ่อนชำระ</div>
+
+                            <div class="text-sm text-gray-600">ดาวน์ + ผ่อนรายเดือน</div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Down Payment Section -->
+
+            <div id="downPaymentSection" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">💳 เงินดาวน์</h3>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+
+                    <div>
+
+                        <label for="downPayment" class="block text-sm font-medium text-gray-700 mb-2">จำนวนเงินดาวน์ (฿)</label>
+
+                        <input type="number" id="downPayment" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500" placeholder="0" oninput="calculateDownPaymentPercent()">
+
+                    </div>
+
+                    <div>
+
+                        <label class="block text-sm font-medium text-gray-700 mb-2">เปอร์เซ็นต์ดาวน์</label>
+
+                        <div class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-lg font-bold text-blue-600" id="downPaymentPercent">0%</div>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="block text-sm font-medium text-gray-700 mb-2">ยอดกู้ไฟแนนซ์</label>
+
+                    <div class="w-full p-3 border border-gray-300 rounded-lg bg-blue-50 text-xl font-bold text-blue-600" id="loanAmount">฿0</div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Financing Terms -->
+
+            <div id="financingSection" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">📊 เงื่อนไขการผ่อน</h3>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+
+                    <div>
+
+                        <label for="interestRate" class="block text-sm font-medium text-gray-700 mb-2">อัตราดอกเบี้ย (%)</label>
+
+                        <input type="number" id="interestRate" value="2.99" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
+
+                    </div>
+
+                    <div>
+
+                        <label for="loanTerm" class="block text-sm font-medium text-gray-700 mb-2">จำนวนงวด</label>
+
+                        <select id="loanTerm" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
+
+                            <option value="48">48 งวด (4 ปี)</option>
+
+                            <option value="60" selected>60 งวด (5 ปี)</option>
+
+                            <option value="72">72 งวด (6 ปี)</option>
+
+                            <option value="84">84 งวด (7 ปี)</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <button onclick="calculateInstallment()" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors">
+
+                    คำนวณค่างวด
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Installment Results -->
+
+            <div id="installmentResults" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden animate-slide-up">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">💰 ผลการคำนวณค่างวด</h3>
+
+                <div class="bg-red-50 p-4 rounded-lg border-2 border-red-200 text-center">
+
+                    <div class="text-sm text-gray-600 mb-1">ค่างวดต่อเดือน</div>
+
+                    <div class="text-3xl font-bold text-red-600" id="monthlyPayment">฿0</div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Delivery Costs -->
+
+            <div id="deliveryCostsSection" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">📋 ค่าใช้จ่ายวันรับรถ</h3>
+
+                <div class="space-y-3">
+
+                    <div class="grid grid-cols-2 gap-3">
+
+                        <div>
+
+                            <label for="registrationFee" class="block text-sm font-medium text-gray-700 mb-1">ค่าจดทะเบียน</label>
+
+                            <input type="number" id="registrationFee" value="5000" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                        <div>
+
+                            <label for="compulsoryInsurance" class="block text-sm font-medium text-gray-700 mb-1">พรบ.</label>
+
+                            <input type="number" id="compulsoryInsurance" value="645" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+
+                        <div>
+
+                            <label for="financeTax" class="block text-sm font-medium text-gray-700 mb-1">อากรไฟแนนซ์</label>
+
+                            <input type="number" id="financeTax" value="1000" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                        <div>
+
+                            <label for="redPlateDeposit" class="block text-sm font-medium text-gray-700 mb-1">มัดจำป้ายแดง</label>
+
+                            <input type="number" id="redPlateDeposit" value="5000" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+
+                        <div>
+
+                            <label for="advancePayment" class="block text-sm font-medium text-gray-700 mb-1">ค่างวดล่วงหน้า</label>
+
+                            <input type="number" id="advancePayment" value="0" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                        <div>
+
+                            <label for="taxDiscount" class="block text-sm font-medium text-gray-700 mb-1">ค่าภาษีส่วนลด 7%</label>
+
+                            <input type="number" id="taxDiscount" value="0" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                    </div>
+
+
+
+                    
+
+                    <div class="border-t pt-3 mt-4">
+
+                        <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+
+                            <span class="font-medium">รวมค่าใช้จ่าย:</span>
+
+                            <span class="text-xl font-bold text-blue-600" id="totalDeliveryCosts">฿0</span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid grid-cols-2 gap-3 mt-4">
+
+                        <div>
+
+                            <label for="discount" class="block text-sm font-medium text-gray-700 mb-1">หักส่วนลด</label>
+
+                            <input type="number" id="discount" value="0" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                        <div>
+
+                            <label for="bookingDeduction" class="block text-sm font-medium text-gray-700 mb-1">หักเงินจอง</label>
+
+                            <input type="number" id="bookingDeduction" value="0" class="w-full p-2 border border-gray-300 rounded-lg text-sm" oninput="calculateDeliveryCosts()">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="border-t pt-3 mt-4">
+
+                        <div class="flex justify-between items-center p-4 bg-green-50 rounded-lg border-2 border-green-200">
+
+                            <span class="font-bold text-green-800">ยอดสุทธิวันรับรถ:</span>
+
+                            <span class="text-2xl font-bold text-green-600" id="netDeliveryCost">฿0</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Free Gifts Section -->
+
+            <div id="freeGiftsSection" class="bg-white rounded-xl p-6 mb-6 card-shadow hidden">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">🎁 ของแถม (เลือกได้หลายรายการ)</h3>
+
+                <div class="grid grid-cols-1 gap-2">
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="ประกันภัยชั้น 1">
+
+                        <span class="text-sm">🛡️ ประกันภัยชั้น 1</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="ฟิล์มเซรามิกรับประกัน 7 ปี">
+
+                        <span class="text-sm">🔆 ฟิล์มเซรามิกรับประกัน 7 ปี</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="น้ำมันเต็มถัง">
+
+                        <span class="text-sm">⛽ น้ำมันเต็มถัง</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="พ่นกันสนิม 12 ครั้ง">
+
+                        <span class="text-sm">🛡️ พ่นกันสนิม 12 ครั้ง</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="เคลือบสี 12 ครั้ง">
+
+                        <span class="text-sm">✨ เคลือบสี 12 ครั้ง</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="กรอบป้าย">
+
+                        <span class="text-sm">🔲 กรอบป้าย</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="ผ้ายาง">
+
+                        <span class="text-sm">🧽 ผ้ายาง</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="กันสาด">
+
+                        <span class="text-sm">☂️ กันสาด</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="ถาดฝาท้าย">
+
+                        <span class="text-sm">📦 ถาดฝาท้าย</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="ชุดกิฟเซต">
+
+                        <span class="text-sm">🎁 ชุดกิฟเซต</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="กระบะไลเนอร์">
+
+                        <span class="text-sm">🛻 กระบะไลเนอร์</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="เบาะแคป">
+
+                        <span class="text-sm">🪑 เบาะแคป</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="กล้องบันทึกหน้า">
+
+                        <span class="text-sm">📹 กล้องบันทึกหน้า</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="เบ้ามือจับ">
+
+                        <span class="text-sm">🚪 เบ้ามือจับ</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="ผ้าคลุม">
+
+                        <span class="text-sm">🧥 ผ้าคลุม</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="ม่านบังแดด">
+
+                        <span class="text-sm">🌞 ม่านบังแดด</span>
+
+                    </label>
+
+                    <label class="checkbox-item flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+
+                        <input type="checkbox" class="gift-checkbox mr-3" value="นวมหุ้มเบลล์">
+
+                        <span class="text-sm">🎯 นวมหุ้มเบลล์</span>
+
+                    </label>
+
+                </div>
+
+                
+
+                <div class="mt-4 p-4 bg-yellow-50 rounded-lg">
+
+                    <h4 class="font-bold text-yellow-800 mb-2">ของแถมที่เลือก:</h4>
+
+                    <div id="selectedGifts" class="text-sm text-yellow-700">ยังไม่ได้เลือกของแถม</div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Summary Section -->
+
+            <div id="summarySection" class="bg-white rounded-xl p-6 card-shadow hidden animate-slide-up">
+
+                <h3 class="text-lg font-bold text-gray-800 mb-4">📊 สรุปรวม</h3>
+
+                <div class="space-y-3">
+
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+
+                        <span class="font-medium">ราคารถ:</span>
+
+                        <span class="text-lg font-bold" id="summaryCarPrice">฿0</span>
+
+                    </div>
+
+                    <div id="summaryFinanceSection">
+
+                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+
+                            <span class="font-medium">เงินดาวน์:</span>
+
+                            <span class="text-lg font-bold" id="summaryDownPayment">฿0</span>
+
+                        </div>
+
+                        <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+
+                            <span class="font-medium">ยอดกู้:</span>
+
+                            <span class="text-lg font-bold text-blue-600" id="summaryLoanAmount">฿0</span>
+
+                        </div>
+
+                        <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg border-2 border-red-200">
+
+                            <span class="font-medium text-red-800">ค่างวด/เดือน:</span>
+
+                            <span class="text-xl font-bold text-red-600" id="summaryMonthlyPayment">฿0</span>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <!-- Delivery Cost Details -->
+
+                    <div class="border-t pt-3 mt-4">
+
+                        <h4 class="font-bold text-gray-700 mb-3">📋 รายละเอียดค่าใช้จ่ายวันรับรถ</h4>
+
+                        <div class="space-y-2 text-sm">
+
+                            <div class="flex justify-between">
+
+                                <span>ค่าจดทะเบียน:</span>
+
+                                <span id="summaryRegistrationFee">฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>พรบ.:</span>
+
+                                <span id="summaryCompulsoryInsurance">฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>อากรไฟแนนซ์:</span>
+
+                                <span id="summaryFinanceTax">฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>มัดจำป้ายแดง:</span>
+
+                                <span id="summaryRedPlateDeposit">฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>ค่างวดล่วงหน้า:</span>
+
+                                <span id="summaryAdvancePayment">฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>ค่าภาษีส่วนลด 7%:</span>
+
+                                <span id="summaryTaxDiscount">฿0</span>
+
+                            </div>
+
+
+
+                            <div id="summaryDownPaymentInCosts" class="flex justify-between">
+
+                                <span>เงินดาวน์:</span>
+
+                                <span id="summaryDownPaymentAmount">฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between border-t pt-2">
+
+                                <span class="font-medium">รวมค่าใช้จ่าย:</span>
+
+                                <span class="font-bold" id="summaryTotalCosts">฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between text-red-600">
+
+                                <span>หักส่วนลด:</span>
+
+                                <span id="summaryDiscount">-฿0</span>
+
+                            </div>
+
+                            <div class="flex justify-between text-red-600">
+
+                                <span>หักเงินจอง:</span>
+
+                                <span id="summaryBookingDeduction">-฿0</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg border-2 border-green-200">
+
+                        <span class="font-medium text-green-800">ยอดสุทธิวันรับรถ:</span>
+
+                        <span class="text-xl font-bold text-green-600" id="summaryNetCost">฿0</span>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="mt-6 space-y-3">
+
+                    <button onclick="generateQuote()" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition-colors">
+
+                        📄 สร้างใบเสนอราคาครบครัน
+
+                    </button>
+
+                    <button onclick="resetCalculator()" class="w-full bg-gray-500 text-white py-3 rounded-lg font-bold hover:bg-gray-600 transition-colors">
+
+                        🔄 คำนวณใหม่
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Quote Modal -->
+
+            <div id="quoteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50">
+
+                <div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-full overflow-y-auto">
+
+                    <div class="text-center mb-4">
+
+                        <h3 class="text-xl font-bold text-gray-800">ใบเสนอราคา Toyota 2025</h3>
+
+                        <p class="text-gray-600">วันที่: <span id="quoteDate"></span></p>
+
+                    </div>
+
+                    <div id="quoteContent" class="space-y-2 text-sm">
+
+                        <!-- Quote content will be generated here -->
+
+                    </div>
+
+                    <div class="mt-6 flex space-x-3">
+
+                        <button onclick="closeQuote()" class="flex-1 bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600">
+
+                            ปิด
+
+                        </button>
+
+                        <button onclick="shareQuote()" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+
+                            แชร์
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <script>
+
+        let currentCarPrice = 0;
+
+        let selectedCarName = '';
+
+        let pearlPrice = 0;
+
+        let roofPrice = 0;
+
+        let isCashPayment = false;
+
+
+
+        function handlePaymentTypeChange() {
+
+            const paymentType = document.querySelector('input[name="paymentType"]:checked').value;
+
+            isCashPayment = paymentType === 'cash';
+
+            
+
+            // Update visual feedback
+
+            document.getElementById('cashPaymentLabel').classList.toggle('border-green-500', isCashPayment);
+
+            document.getElementById('financePaymentLabel').classList.toggle('border-blue-500', !isCashPayment);
+
+            
+
+            if (isCashPayment) {
+
+                // Hide financing sections for cash payment
+
+                document.getElementById('downPaymentSection').classList.add('hidden');
+
+                document.getElementById('financingSection').classList.add('hidden');
+
+                document.getElementById('installmentResults').classList.add('hidden');
+
+                
+
+                // Set down payment to full car price for cash payment
+
+                document.getElementById('downPayment').value = currentCarPrice;
+
+                calculateDownPaymentPercent();
+
+                
+
+                // Show summary immediately for cash payment
+
+                document.getElementById('summarySection').classList.remove('hidden');
+
+                updateSummary();
+
+            } else {
+
+                // Show financing sections for installment payment
+
+                document.getElementById('downPaymentSection').classList.remove('hidden');
+
+                document.getElementById('financingSection').classList.remove('hidden');
+
+                
+
+                // Reset down payment
+
+                document.getElementById('downPayment').value = '';
+
+                calculateDownPaymentPercent();
+
+                
+
+                // Hide summary until installment is calculated
+
+                document.getElementById('summarySection').classList.add('hidden');
+
+            }
+
+            
+
+            calculateDeliveryCosts();
+
+        }
+
+
+
+        // Car selection handler
+
+        document.getElementById('carModel').addEventListener('change', function() {
+
+            const selectedOption = this.options[this.selectedIndex];
+
+            if (selectedOption.value) {
+
+                currentCarPrice = parseInt(selectedOption.dataset.price);
+
+                pearlPrice = parseInt(selectedOption.dataset.pearl);
+
+                roofPrice = parseInt(selectedOption.dataset.roof);
+
+                selectedCarName = selectedOption.text.split(' - ')[0];
+
+                
+
+                // Update color pricing display
+
+                document.getElementById('pearlPrice').textContent = pearlPrice.toLocaleString();
+
+                document.getElementById('roofPrice').textContent = roofPrice.toLocaleString();
+
+                
+
+                // Show/hide black roof option
+
+                if (roofPrice > 0) {
+
+                    document.getElementById('blackRoofOption').classList.remove('hidden');
+
+                } else {
+
+                    document.getElementById('blackRoofOption').classList.add('hidden');
+
+                    document.getElementById('blackRoof').checked = false;
+
+                }
+
+                
+
+                // Reset color selection
+
+                document.querySelector('input[name="carColor"][value="standard"]').checked = true;
+
+                
+
+                calculateColorPrice();
+
+                
+
+                // Show all sections
+
+                document.getElementById('colorSection').classList.remove('hidden');
+
+                document.getElementById('priceDisplay').classList.remove('hidden');
+
+                document.getElementById('paymentTypeSection').classList.remove('hidden');
+
+                document.getElementById('downPaymentSection').classList.remove('hidden');
+
+                document.getElementById('financingSection').classList.remove('hidden');
+
+                document.getElementById('deliveryCostsSection').classList.remove('hidden');
+
+                document.getElementById('freeGiftsSection').classList.remove('hidden');
+
+                
+
+                // Reset values
+
+                document.getElementById('downPayment').value = '';
+
+                calculateDownPaymentPercent();
+
+                calculateDeliveryCosts();
+
+                updateSelectedGifts();
+
+            } else {
+
+                hideAllSections();
+
+            }
+
+        });
+
+
+
+        function calculateColorPrice() {
+
+            let colorCost = 0;
+
+            const selectedColor = document.querySelector('input[name="carColor"]:checked').value;
+
+            const blackRoofChecked = document.getElementById('blackRoof').checked;
+
+            
+
+            if (selectedColor === 'pearl') {
+
+                colorCost += pearlPrice;
+
+            }
+
+            
+
+            if (blackRoofChecked) {
+
+                colorCost += roofPrice;
+
+            }
+
+            
+
+            const totalPrice = currentCarPrice + colorCost;
+
+            
+
+            document.getElementById('basePrice').textContent = '฿' + currentCarPrice.toLocaleString();
+
+            document.getElementById('colorCost').textContent = '฿' + colorCost.toLocaleString();
+
+            document.getElementById('totalPrice').textContent = '฿' + totalPrice.toLocaleString();
+
+            
+
+            // Update current car price for calculations
+
+            currentCarPrice = totalPrice;
+
+            calculateDownPaymentPercent();
+
+        }
+
+
+
+        function calculateDownPaymentPercent() {
+
+            const downPayment = parseInt(document.getElementById('downPayment').value) || 0;
+
+            const percentage = currentCarPrice > 0 ? ((downPayment / currentCarPrice) * 100).toFixed(1) : 0;
+
+            const loanAmount = currentCarPrice - downPayment;
+
+            
+
+            document.getElementById('downPaymentPercent').textContent = percentage + '%';
+
+            document.getElementById('loanAmount').textContent = '฿' + Math.max(0, loanAmount).toLocaleString();
+
+            
+
+            // Update delivery costs when down payment changes
+
+            calculateDeliveryCosts();
+
+        }
+
+
+
+        function calculateInstallment() {
+
+            const downPayment = parseInt(document.getElementById('downPayment').value) || 0;
+
+            const loanAmount = currentCarPrice - downPayment;
+
+            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+
+            const loanTerm = parseInt(document.getElementById('loanTerm').value);
+
+
+
+            if (loanAmount <= 0) {
+
+                showMessage('กรุณากรอกเงินดาวน์ให้ถูกต้อง', 'error');
+
+                return;
+
+            }
+
+
+
+            const monthlyRate = interestRate / 12;
+
+            const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, loanTerm)) / 
+
+                                 (Math.pow(1 + monthlyRate, loanTerm) - 1);
+
+
+
+            document.getElementById('monthlyPayment').textContent = '฿' + Math.round(monthlyPayment).toLocaleString();
+
+            document.getElementById('installmentResults').classList.remove('hidden');
+
+            document.getElementById('summarySection').classList.remove('hidden');
+
+            
+
+            updateSummary();
+
+        }
+
+
+
+        function calculateDeliveryCosts() {
+
+            const registrationFee = parseInt(document.getElementById('registrationFee').value) || 0;
+
+            const compulsoryInsurance = parseInt(document.getElementById('compulsoryInsurance').value) || 0;
+
+            const financeTax = parseInt(document.getElementById('financeTax').value) || 0;
+
+            const redPlateDeposit = parseInt(document.getElementById('redPlateDeposit').value) || 0;
+
+            const advancePayment = parseInt(document.getElementById('advancePayment').value) || 0;
+
+            const taxDiscount = parseInt(document.getElementById('taxDiscount').value) || 0;
+
+            const discount = parseInt(document.getElementById('discount').value) || 0;
+
+            const bookingDeduction = parseInt(document.getElementById('bookingDeduction').value) || 0;
+
+            const downPayment = parseInt(document.getElementById('downPayment').value) || 0;
+
+
+
+            const totalCosts = registrationFee + compulsoryInsurance + financeTax + redPlateDeposit + 
+
+                             advancePayment + taxDiscount + downPayment;
+
+            const netCost = totalCosts - discount - bookingDeduction;
+
+
+
+            document.getElementById('totalDeliveryCosts').textContent = '฿' + totalCosts.toLocaleString();
+
+            document.getElementById('netDeliveryCost').textContent = '฿' + Math.max(0, netCost).toLocaleString();
+
+            
+
+            updateSummary();
+
+        }
+
+
+
+        function updateSelectedGifts() {
+
+            const selectedGifts = [];
+
+            document.querySelectorAll('.gift-checkbox:checked').forEach(checkbox => {
+
+                selectedGifts.push(checkbox.value);
+
+            });
+
+            
+
+            const giftsDisplay = document.getElementById('selectedGifts');
+
+            if (selectedGifts.length > 0) {
+
+                giftsDisplay.innerHTML = selectedGifts.map(gift => `• ${gift}`).join('<br>');
+
+            } else {
+
+                giftsDisplay.textContent = 'ยังไม่ได้เลือกของแถม';
+
+            }
+
+        }
+
+
+
+        function updateSummary() {
+
+            const downPayment = parseInt(document.getElementById('downPayment').value) || 0;
+
+            const loanAmount = currentCarPrice - downPayment;
+
+            const monthlyPayment = document.getElementById('monthlyPayment').textContent;
+
+            const netCost = document.getElementById('netDeliveryCost').textContent;
+
+
+
+            // Update main summary
+
+            document.getElementById('summaryCarPrice').textContent = document.getElementById('totalPrice').textContent;
+
+            document.getElementById('summaryDownPayment').textContent = '฿' + downPayment.toLocaleString();
+
+            document.getElementById('summaryLoanAmount').textContent = '฿' + Math.max(0, loanAmount).toLocaleString();
+
+            document.getElementById('summaryMonthlyPayment').textContent = monthlyPayment;
+
+            document.getElementById('summaryNetCost').textContent = netCost;
+
+            
+
+            // Update detailed cost breakdown
+
+            document.getElementById('summaryRegistrationFee').textContent = '฿' + (parseInt(document.getElementById('registrationFee').value) || 0).toLocaleString();
+
+            document.getElementById('summaryCompulsoryInsurance').textContent = '฿' + (parseInt(document.getElementById('compulsoryInsurance').value) || 0).toLocaleString();
+
+            document.getElementById('summaryFinanceTax').textContent = '฿' + (parseInt(document.getElementById('financeTax').value) || 0).toLocaleString();
+
+            document.getElementById('summaryRedPlateDeposit').textContent = '฿' + (parseInt(document.getElementById('redPlateDeposit').value) || 0).toLocaleString();
+
+            document.getElementById('summaryAdvancePayment').textContent = '฿' + (parseInt(document.getElementById('advancePayment').value) || 0).toLocaleString();
+
+            document.getElementById('summaryTaxDiscount').textContent = '฿' + (parseInt(document.getElementById('taxDiscount').value) || 0).toLocaleString();
+
+            document.getElementById('summaryDownPaymentAmount').textContent = '฿' + downPayment.toLocaleString();
+
+            document.getElementById('summaryTotalCosts').textContent = document.getElementById('totalDeliveryCosts').textContent;
+
+            document.getElementById('summaryDiscount').textContent = '-฿' + (parseInt(document.getElementById('discount').value) || 0).toLocaleString();
+
+            document.getElementById('summaryBookingDeduction').textContent = '-฿' + (parseInt(document.getElementById('bookingDeduction').value) || 0).toLocaleString();
+
+            
+
+            // Show/hide finance section based on payment type
+
+            if (isCashPayment) {
+
+                document.getElementById('summaryFinanceSection').classList.add('hidden');
+
+                document.getElementById('summaryDownPaymentInCosts').classList.add('hidden');
+
+            } else {
+
+                document.getElementById('summaryFinanceSection').classList.remove('hidden');
+
+                document.getElementById('summaryDownPaymentInCosts').classList.remove('hidden');
+
+            }
+
+        }
+
+
+
+        function generateQuote() {
+
+            const downPayment = parseInt(document.getElementById('downPayment').value) || 0;
+
+            const loanTerm = document.getElementById('loanTerm').value;
+
+            const interestRate = document.getElementById('interestRate').value;
+
+            const monthlyPayment = document.getElementById('monthlyPayment').textContent;
+
+            const netCost = document.getElementById('netDeliveryCost').textContent;
+
+            
+
+            // Get selected color info
+
+            const selectedColor = document.querySelector('input[name="carColor"]:checked').value;
+
+            const blackRoofChecked = document.getElementById('blackRoof').checked;
+
+            let colorInfo = 'สีมาตรฐาน';
+
+            if (selectedColor === 'pearl') {
+
+                colorInfo = 'สีขาวมุก/เทานม';
+
+            }
+
+            if (blackRoofChecked) {
+
+                colorInfo += ' + หลังคาดำ';
+
+            }
+
+            
+
+            const selectedGifts = [];
+
+            document.querySelectorAll('.gift-checkbox:checked').forEach(checkbox => {
+
+                selectedGifts.push(checkbox.value);
+
+            });
+
+
+
+            const quoteContent = `
+
+                <div class="border-b pb-3 mb-3">
+
+                    <strong>รุ่นรถ:</strong> ${selectedCarName}<br>
+
+                    <strong>สี:</strong> ${colorInfo}<br>
+
+                    <strong>ราคารวม:</strong> ${document.getElementById('totalPrice').textContent}
+
+                </div>
+
+                <div class="border-b pb-3 mb-3">
+
+                    <strong>การเงิน:</strong><br>
+
+                    • เงินดาวน์: ฿${downPayment.toLocaleString()} (${document.getElementById('downPaymentPercent').textContent})<br>
+
+                    • ยอดกู้: ${document.getElementById('summaryLoanAmount').textContent}<br>
+
+                    • ระยะเวลา: ${loanTerm} งวด<br>
+
+                    • ดอกเบี้ย: ${interestRate}%<br>
+
+                    • <strong>ค่างวด/เดือน: ${monthlyPayment}</strong>
+
+                </div>
+
+                <div class="border-b pb-3 mb-3">
+
+                    <strong>ค่าใช้จ่ายวันรับรถ:</strong><br>
+
+                    • รวมค่าใช้จ่าย: ${document.getElementById('totalDeliveryCosts').textContent}<br>
+
+                    • หักส่วนลด: ฿${(parseInt(document.getElementById('discount').value) || 0).toLocaleString()}<br>
+
+                    • หักเงินจอง: ฿${(parseInt(document.getElementById('bookingDeduction').value) || 0).toLocaleString()}<br>
+
+                    • <strong>ยอดสุทธิ: ${netCost}</strong>
+
+                </div>
+
+                ${selectedGifts.length > 0 ? `
+
+                <div class="border-b pb-3 mb-3">
+
+                    <strong>ของแถม:</strong><br>
+
+                    ${selectedGifts.map(gift => `• ${gift}`).join('<br>')}
+
+                </div>
+
+                ` : ''}
+
+                <div class="text-center bg-red-50 p-3 rounded">
+
+                    <strong class="text-red-600">สรุป: ดาวน์ ${document.getElementById('summaryDownPayment').textContent} + ผ่อน ${monthlyPayment}</strong><br>
+
+                    <strong class="text-green-600">วันรับรถจ่าย ${netCost}</strong>
+
+                </div>
+
+            `;
+
+
+
+            document.getElementById('quoteContent').innerHTML = quoteContent;
+
+            document.getElementById('quoteDate').textContent = new Date().toLocaleDateString('th-TH');
+
+            document.getElementById('quoteModal').classList.remove('hidden');
+
+            document.getElementById('quoteModal').classList.add('flex');
+
+        }
+
+
+
+        function closeQuote() {
+
+            document.getElementById('quoteModal').classList.add('hidden');
+
+            document.getElementById('quoteModal').classList.remove('flex');
+
+        }
+
+
+
+        function shareQuote() {
+
+            const quoteText = `ใบเสนอราคา ${selectedCarName}\nดาวน์ ${document.getElementById('summaryDownPayment').textContent}\nผ่อน ${document.getElementById('summaryMonthlyPayment').textContent}\nวันรับรถจ่าย ${document.getElementById('summaryNetCost').textContent}`;
+
+            
+
+            if (navigator.share) {
+
+                navigator.share({
+
+                    title: 'ใบเสนอราคา Toyota 2025',
+
+                    text: quoteText
+
+                });
+
+            } else {
+
+                navigator.clipboard.writeText(quoteText).then(() => {
+
+                    showMessage('คัดลอกใบเสนอราคาแล้ว!', 'success');
+
+                });
+
+            }
+
+        }
+
+
+
+        function resetCalculator() {
+
+            document.getElementById('carModel').value = '';
+
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+
+                if (input.id === 'interestRate') {
+
+                    input.value = '2.99';
+
+                } else if (input.id === 'registrationFee') {
+
+                    input.value = '5000';
+
+                } else if (input.id === 'compulsoryInsurance') {
+
+                    input.value = '645';
+
+                } else if (input.id === 'financeTax') {
+
+                    input.value = '1000';
+
+                } else if (input.id === 'redPlateDeposit') {
+
+                    input.value = '5000';
+
+                } else {
+
+                    input.value = '';
+
+                }
+
+            });
+
+            document.getElementById('loanTerm').value = '60';
+
+            document.querySelectorAll('.gift-checkbox').forEach(cb => cb.checked = false);
+
+            document.querySelector('input[name="carColor"][value="standard"]').checked = true;
+
+            document.querySelector('input[name="paymentType"][value="finance"]').checked = true;
+
+            document.getElementById('blackRoof').checked = false;
+
+            
+
+            // Reset payment type styling
+
+            document.getElementById('cashPaymentLabel').classList.remove('border-green-500');
+
+            document.getElementById('financePaymentLabel').classList.remove('border-blue-500');
+
+            
+
+            hideAllSections();
+
+            updateSelectedGifts();
+
+            currentCarPrice = 0;
+
+            selectedCarName = '';
+
+            pearlPrice = 0;
+
+            roofPrice = 0;
+
+            isCashPayment = false;
+
+        }
+
+
+
+        function hideAllSections() {
+
+            document.getElementById('colorSection').classList.add('hidden');
+
+            document.getElementById('priceDisplay').classList.add('hidden');
+
+            document.getElementById('paymentTypeSection').classList.add('hidden');
+
+            document.getElementById('downPaymentSection').classList.add('hidden');
+
+            document.getElementById('financingSection').classList.add('hidden');
+
+            document.getElementById('installmentResults').classList.add('hidden');
+
+            document.getElementById('deliveryCostsSection').classList.add('hidden');
+
+            document.getElementById('freeGiftsSection').classList.add('hidden');
+
+            document.getElementById('summarySection').classList.add('hidden');
+
+        }
+
+
+
+        function showMessage(message, type) {
+
+            const messageDiv = document.createElement('div');
+
+            messageDiv.className = `fixed top-4 left-4 right-4 p-4 rounded-lg z-50 ${type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white text-center`;
+
+            messageDiv.textContent = message;
+
+            document.body.appendChild(messageDiv);
+
+            
+
+            setTimeout(() => {
+
+                messageDiv.remove();
+
+            }, 3000);
+
+        }
+
+
+
+        // Event listeners
+
+        document.getElementById('downPayment').addEventListener('input', calculateDownPaymentPercent);
+
+        document.querySelectorAll('.gift-checkbox').forEach(checkbox => {
+
+            checkbox.addEventListener('change', updateSelectedGifts);
+
+        });
+
+    </script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'991113ad804d7b4a',t:'MTc2MDg4NTMxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+</html>
